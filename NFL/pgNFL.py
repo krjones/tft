@@ -9,7 +9,7 @@ black = (0,0,0)
 
 
 class Pane(object):
-    def getScores():
+    def getScores(self):
         os.system('/home/pi/scripts/NFLscores.py')
         f = open('/home/pi/scripts/scores.txt','r').readlines()
         current = []
