@@ -44,8 +44,17 @@ class Pane(object):
 #                 pdb.set_trace()
                 away = pygame.image.load(imdir+game.split()[1].lower()+'.bmp')
                 home = pygame.image.load(imdir+game.split()[4].lower()+'.bmp')
-                self.screen.blit(away,(0,0))
-                self.screen.blit(home,(200,0))
+                if pygame.Surface.get_size(home)[1] > pygame.Surface.get_size(away)[1]:
+                    adj = (pygame.Surface.get_size(home)[1] - pygame.Surface.get_size(away)[1])/2
+                    self.screen.blit(away,(0,adj))
+                    self.screen.blit(home,(320-pygame.Surface.get_size(home)[0],0))
+                elif pygame.Surface.get_size(home)[1] < pygame.Surface.get_size(away)[1]:
+                    adj = (pygame.Surface.get_size(away)[1] - pygame.Surface.get_size(home)[1])/2
+                    self.screen.blit(away,(0,0))
+                    self.screen.blit(home,(320-pygame.Surface.get_size(home)[0],adj))
+                else:
+                    self.screen.blit(away,(0,0))
+                    self.screen.blit(home,(320-pygame.Surface.get_size(home)[0],0))
 #         self.screen.blit(self.font.render('Twitter Trends', True, (255,255,255)), (10, 6))
 #         start_line = self.font.size('Twitter Trends')[1]
 #         self.font = pygame.font.SysFont('Arial', 17)
