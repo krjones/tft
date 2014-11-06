@@ -23,7 +23,7 @@ def checkArgLen():
 def reset():
 	black()
 	os.system('sudo pkill fbi')
-
+	off()
 def on():
 	print 'Screen On'
 	pitft.Backlight(True)
@@ -50,78 +50,15 @@ def green():
 def lastsnap():
 	os.system('scp -r pi@192.168.0.40:/home/pi/motion/lastsnap.jpg /home/pi/tft/temp/')
 	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a /home/pi/tft/temp/lastsnap.jpg')
-	time.sleep(20)
-	reset()
 	
 def lastdet():
 	os.system('scp -r pi@192.168.0.40:/home/pi/motion/lastdet.jpg /home/pi/tft/temp/')
 	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a /home/pi/tft/temp/lastdet.jpg')
-	time.sleep(20)
-	reset()
 
 def wx():
 	os.system('/home/pi/scripts/ModifiedFiles/RPI/weather-script.sh')
-	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a /home/pi/tft/weather-script.sh')
+	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a /home/pi/tft/wx-current.png')
 	time.sleep(20)
-	reset()
-
-def loop():
-	idx = 5
-	while idx < 6:
-		wx()
-		lastsnap()
-		lastdet()
-		idx = idx + 1
-	
-
-def runArgs():
-	for i in sys.argv[1:]:
-		if i == 'on':
-			reset()
-			on()
-		elif i == 'off':
-			reset()
-			off()
-		elif i == 'black':
-			black()
-			reset()
-		elif i == 'red':
-			reset()
-			red()
-		elif i == 'green':
-			reset()
-			green()
-		elif i == 'lastsnap':
-			reset()
-			lastsnap()
-		elif i == 'lastdet':
-			reset()
-			lastdet()
-			time.sleep(20)
-			reset()
-		elif i == 'wx':
-			wx()
-			reset()
-		elif i == 'loop':
-			reset()
-			loop()
-		else:
-			print 'Input "'+ i +'" Not Recognized...Ignoring...'
-
-def main():
-	initialize()
-	checkArgLen()
-	runArgs()
-	
-main()
-
-
-
-#### EXTRAS ####
-
-#convert black.jpg    -resize 320x240\!  test.gif
-
-
 #	os.chdir(dir+'wx/images')
 # 	print 'Downloading WX Images'
 # 	os.system('wget http://192.168.0.40/weewx/daytempdew.png')
@@ -145,3 +82,48 @@ main()
 # 	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a dayinside.png')
 # 	time.sleep(5)
 # 	os.chdir(dir)
+	
+
+def runArgs():
+	for i in sys.argv[1:]:
+		if i == 'on':
+			reset()
+			on()
+		elif i == 'off':
+			reset()
+			off()
+		elif i == 'black':
+			black()
+			reset()
+		elif i == 'red':
+			red()
+			reset()
+		elif i == 'green':
+			green()
+			reset()		
+		elif i == 'lastsnap':
+			reset()
+			lastsnap()
+			time.sleep(20)
+			reset()
+		elif i == 'lastdet':
+			reset()
+			lastdet()
+			time.sleep(20)
+			reset()
+		elif i == 'wx':
+			wx()
+			reset()
+		else:
+			print 'Input "'+ i +'" Not Recognized...Ignoring...'
+
+def main():
+	initialize()
+	checkArgLen()
+	runArgs()
+	
+main()
+
+
+
+#convert black.jpg    -resize 320x240\!  test.gif
