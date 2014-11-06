@@ -35,12 +35,8 @@ class Pane(object):
         pygame.display.update()
 
     def addText(self):
-        f = urllib2.urlopen('http://192.168.0.40/twitter/total_trends.html').readlines()
-        short_list = f[0].split("#000000'>")[1:11]
-        trends = []
-        for line in short_list:
-            trends.append(line.split('</a>')[0])
-
+        current, upcoming, finished = getScores()
+        
         self.screen.blit(self.font.render('Twitter Trends', True, (255,255,255)), (10, 6))
         start_line = self.font.size('Twitter Trends')[1]
         self.font = pygame.font.SysFont('Arial', 17)
@@ -64,7 +60,6 @@ if __name__ == '__main__':
     os.environ["SDL_FBDEV"] = "/dev/fb1"
     os.putenv('SDL_MOUSEDEV' , '/dev/input/touchscreen')
     Pan3 = Pane()
-    current, upcoming, finished = getScores()
     Pan3.addText()
     while True:
         for event in pygame.event.get():
