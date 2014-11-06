@@ -9,15 +9,6 @@ black = (0,0,0)
 
 
 class Pane(object):
-    def __init__(self):
-        pygame.init()
-        self.font = pygame.font.SysFont('Arial', 25)
-    self.font.set_underline(1)
-        pygame.display.set_caption('Box Test')
-        self.screen = pygame.display.set_mode((320,240), 0, 32)
-        self.screen.fill((black))
-        pygame.display.update()
-
     def getScores():
         os.system('/home/pi/scripts/NFLscores.py')
         f = open('/home/pi/scripts/scores.txt','r').readlines()
@@ -34,6 +25,15 @@ class Pane(object):
         
         return current, upcoming, finished
         
+    def __init__(self):
+        pygame.init()
+        self.font = pygame.font.SysFont('Arial', 25)
+        self.font.set_underline(1)
+        pygame.display.set_caption('Box Test')
+        self.screen = pygame.display.set_mode((320,240), 0, 32)
+        self.screen.fill((black))
+        pygame.display.update()
+
     def addText(self):
         f = urllib2.urlopen('http://192.168.0.40/twitter/total_trends.html').readlines()
         short_list = f[0].split("#000000'>")[1:11]
