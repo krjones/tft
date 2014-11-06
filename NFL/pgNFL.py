@@ -25,7 +25,7 @@ def getScores():
     
     return current, upcoming, finished
     
-def __init__(self):
+def initialize():
     pygame.init()
     self.font = pygame.font.SysFont('Arial', 25)
     self.font.set_underline(1)
