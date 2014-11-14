@@ -48,10 +48,12 @@ def green():
 	pitft.Backlight(False)	
 	
 def lastsnap():
+    on()
 	os.system('scp -r pi@192.168.0.40:/home/pi/motion/lastsnap.jpg /home/pi/tft/temp/')
 	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a /home/pi/tft/temp/lastsnap.jpg')
 	
 def lastdet():
+    on()
 	os.system('scp -r pi@192.168.0.40:/home/pi/motion/lastdet.jpg /home/pi/tft/temp/')
 	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a /home/pi/tft/temp/lastdet.jpg')
 
