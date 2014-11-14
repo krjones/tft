@@ -46,7 +46,7 @@ def green():
 	os.system('fbi -T 2 -d /dev/fb1 -noverbose green.jpg')
 	time.sleep(10)
 	pitft.Backlight(False)	
-	
+	 
 def lastsnap():
     on()
 	os.system('scp -r pi@192.168.0.40:/home/pi/motion/lastsnap.jpg /home/pi/tft/temp/')
