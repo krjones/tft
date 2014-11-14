@@ -47,13 +47,11 @@ def green():
 	time.sleep(10)
 	pitft.Backlight(False)	
 	
-def lastsnap():
-	on()
+def lastsnap():        
 	os.system('scp -r pi@192.168.0.40:/home/pi/motion/lastsnap.jpg /home/pi/tft/temp/')
-	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a /home/pi/tft/temp/lastsnap.jpg')
-	
+	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a /home/pi/tft/temp/lastsnap.jpg')    
+		    
 def lastdet():
-	on()
 	os.system('scp -r pi@192.168.0.40:/home/pi/motion/lastdet.jpg /home/pi/tft/temp/')
 	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a /home/pi/tft/temp/lastdet.jpg')
 
@@ -105,16 +103,19 @@ def runArgs():
 			reset()		
 		elif i == 'lastsnap':
 			reset()
+			on()
 			lastsnap()
 			time.sleep(20)
 			reset()
 		elif i == 'lastdet':
 			reset()
+			on()
 			lastdet()
 			time.sleep(20)
 			reset()
 		elif i == 'wx':
 			wx()
+			on()
 			reset()
 		else:
 			print 'Input "'+ i +'" Not Recognized...Ignoring...'
