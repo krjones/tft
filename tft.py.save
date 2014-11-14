@@ -22,8 +22,6 @@ def checkArgLen():
 
 def reset():
 	black()
-	os.system('sudo pkill fbi')
-	off()
 def on():
 	print 'Screen On'
 	pitft.Backlight(True)
@@ -56,32 +54,29 @@ def lastdet():
 	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a /home/pi/tft/temp/lastdet.jpg')
 
 def wx():
-	os.system('/home/pi/scripts/ModifiedFiles/RPI/weather-script.sh')
-	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a /home/pi/tft/wx-current.png')
-	time.sleep(20)
-#	os.chdir(dir+'wx/images')
-# 	print 'Downloading WX Images'
-# 	os.system('wget http://192.168.0.40/weewx/daytempdew.png')
-# 	os.system('wget http://192.168.0.40/weewx/daytempchill.png')
-# 	os.system('wget http://192.168.0.40/weewx/.png')
-# 	os.system('wget http://192.168.0.40/weewx/daybarometer.png')
-# 	os.system('wget http://192.168.0.40/weewx/daywinddir.png')
-# 	os.system('wget http://192.168.0.40/weewx/dayinside.png')
-# 	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a daytempdew.png')
-# 	time.sleep(5)
-# 	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a daytempchill.png')
-# 	time.sleep(5)
-# 	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a daytempdew.png')
-# 	time.sleep(5)
-# 	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a daywind.png')
-# 	time.sleep(5)
-# 	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a daybarometer.png')
-# 	time.sleep(5)
-# 	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a daywinddir.png')
-# 	time.sleep(5)
-# 	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a dayinside.png')
-# 	time.sleep(5)
-# 	os.chdir(dir)
+	os.chdir(dir+'wx/images')
+	print 'Downloading WX Images'
+	os.system('wget http://192.168.0.40/weewx/daytempdew.png')
+	os.system('wget http://192.168.0.40/weewx/daytempchill.png')
+	os.system('wget http://192.168.0.40/weewx/.png')
+	os.system('wget http://192.168.0.40/weewx/daybarometer.png')
+	os.system('wget http://192.168.0.40/weewx/daywinddir.png')
+	os.system('wget http://192.168.0.40/weewx/dayinside.png')
+	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a daytempdew.png')
+	time.sleep(5)
+	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a daytempchill.png')
+	time.sleep(5)
+	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a daytempdew.png')
+	time.sleep(5)
+	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a daywind.png')
+	time.sleep(5)
+	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a daybarometer.png')
+	time.sleep(5)
+	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a daywinddir.png')
+	time.sleep(5)
+	os.system('fbi -T 2 -d /dev/fb1 -noverbose -a dayinside.png')
+	time.sleep(5)
+	os.chdir(dir)
 	
 
 def runArgs():
@@ -104,12 +99,12 @@ def runArgs():
 		elif i == 'lastsnap':
 			reset()
 			lastsnap()
-			time.sleep(20)
+			time.sleep(5)
 			reset()
 		elif i == 'lastdet':
 			reset()
 			lastdet()
-			time.sleep(20)
+			time.sleep(5)
 			reset()
 		elif i == 'wx':
 			wx()
@@ -121,6 +116,7 @@ def main():
 	initialize()
 	checkArgLen()
 	runArgs()
+	off()
 	
 main()
 
