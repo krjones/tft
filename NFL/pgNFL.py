@@ -155,12 +155,12 @@ class Pane(object):
 #                 pygame.display.flip()
 
 if __name__ == '__main__':
-    #os.system('/home/pi/scripts/backlighton.sh')
-    #os.environ["SDL_FBDEV"] = "/dev/fb1"
-    #os.putenv('SDL_MOUSEDEV' , '/dev/input/touchscreen')
+    os.system('/home/pi/scripts/backlighton.sh')
+    os.environ["SDL_FBDEV"] = "/dev/fb1"
+    os.putenv('SDL_MOUSEDEV' , '/dev/input/touchscreen')
     Pan3 = Pane()
     Pan3.addText()
-    #os.system('/home/pi/scripts/backlightoff.sh')
+    os.system('/home/pi/scripts/backlightoff.sh')
     pygame.quit(); sys.exit();
 #     while True:
 #         for event in pygame.event.get():
