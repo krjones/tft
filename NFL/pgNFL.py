@@ -19,8 +19,8 @@ class Pane(object):
         pygame.display.update()
 
     def getScores(self):
-        os.system('/Users/kyle/Programming/GitHub/tft/NFLdev/NFLscores.py')
-        f = open('/Users/kyle/Programming/GitHub/tft/NFLdev/scores.txt','r').readlines()
+        os.system('/home/pi/scripts/NFLscores.py')
+        f = open('/home/pi/scripts/scores.txt','r').readlines()
         current = []
         upcoming = []
         finished = []
@@ -148,7 +148,7 @@ class Pane(object):
         
     def addText(self):
         global imdir
-        imdir = '/Users/kyle/Programming/GitHub/tft/NFLdev/Images/'
+        imdir = '/home/pi/GitHub/tft/NFL/Images/'
         current, upcoming, finished = self.getScores()
         self.run(current,upcoming,finished)
 #         pdb.set_trace()        
